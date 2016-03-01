@@ -21,7 +21,7 @@ public class Post {
     private User author;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column()
+    @Column(name="time", nullable = false)
     private Date timestamp;
 
     @ManyToOne

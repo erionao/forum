@@ -1,5 +1,6 @@
 package com.logisticsplus.forum.entities;
 
+
 import com.logisticsplus.forum.entities.enums.UserRole;
 import org.hibernate.annotations.Type;
 import org.springframework.data.annotation.Id;
@@ -23,7 +24,8 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @ManyToOne(fetch = FetchType.LAZY, mappedBy = "user")
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
     private UserRole role;
 
     public Integer getId() {

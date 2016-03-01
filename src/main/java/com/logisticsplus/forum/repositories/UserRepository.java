@@ -4,6 +4,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 import com.logisticsplus.forum.entities.User;
 
-@Repository("userRepository")
+@Repository("Repository")
 public interface UserRepository extends PagingAndSortingRepository<User, Integer> {
 }
