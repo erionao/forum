@@ -1,0 +1,95 @@
+package com.logisticsplus.forum.entities;
+
+import com.logisticsplus.forum.entities.Category;
+
+
+import javax.persistence.*;
+
+import java.util.Date;
+
+@Entity
+public class Post {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+
+    @ManyToOne
+    @JoinColumn(name = "category", nullable = false)
+    private Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "author", nullable = false)
+    private User author;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column()
+    private Date timestamp;
+
+    @ManyToOne
+    @JoinColumn(name = "parent", nullable = false)
+    private Post parent;
+
+    @Column(name = "title", nullable = false)
+    private String title;
+
+    @Column(name = "body", nullable = false)
+    private String body;
+
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public Post getParent() {
+        return parent;
+    }
+
+    public void setParent(Post parent) {
+        this.parent = parent;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+}
