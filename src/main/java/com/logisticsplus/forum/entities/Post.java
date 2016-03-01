@@ -2,9 +2,7 @@ package com.logisticsplus.forum.entities;
 
 import com.logisticsplus.forum.entities.Category;
 
-
 import javax.persistence.*;
-
 import java.util.Date;
 
 @Entity

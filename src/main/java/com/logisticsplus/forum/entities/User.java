@@ -23,7 +23,7 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @ManyToOne(fetch = FetchType.LAZY, mappedBy = "user")
     private UserRole role;
 
     public Integer getId() {
