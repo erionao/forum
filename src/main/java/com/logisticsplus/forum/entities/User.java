@@ -1,30 +1,26 @@
 package com.logisticsplus.forum.entities;
 
-
 import com.logisticsplus.forum.entities.enums.UserRole;
-import org.hibernate.annotations.Type;
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private int id;
 
-    @Column(name = "name", nullable = false, unique = true)
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "role")
+    @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     private UserRole role;
 

@@ -17,11 +17,11 @@ public class Post {
     private Category category;
 
     @ManyToOne
-    @JoinColumn(name = "author", nullable = false)
+    @JoinColumn(name = "author")
     private User author;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="time", nullable = false)
+    @Column(name="timestamp", nullable = false)
     private Date timestamp;
 
     @ManyToOne

@@ -1,31 +1,32 @@
 package com.logisticsplus.forum.controllers;
 
-import com.logisticsplus.forum.entities.Category;
-import com.logisticsplus.forum.services.CategoryService;
+import com.logisticsplus.forum.entities.User;
+import com.logisticsplus.forum.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("category")
+@RequestMapping("users")
 @RestController
-public class CategoryController {
+public class UsersController {
+
     @Autowired
-    private CategoryService service;
+    private UserService service;
 
     @RequestMapping(method = RequestMethod.GET)
-    public Page<Category> index(Pageable pageable){
+    public Page<User>index(Pageable pageable){
         return service.findAll(pageable);
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Category save(@RequestBody Category category){
-        return service.save(category);
+    public User save(@RequestBody User user) {
+        return service.save(user);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public Category update(@RequestBody Category category){
-        return service.save(category);
+    public User update(@RequestBody User user){
+        return service.save(user);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
