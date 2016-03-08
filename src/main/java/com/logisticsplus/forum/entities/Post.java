@@ -1,17 +1,22 @@
 package com.logisticsplus.forum.entities;
 
 import com.logisticsplus.forum.entities.Category;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
 public class Post {
 
+    @NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "category", nullable = false)
     private Category category;
@@ -24,13 +29,18 @@ public class Post {
     @Column(name="timestamp", nullable = false)
     private Date timestamp;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "parent", nullable = false)
     private Post parent;
 
+    @NotNull
+    @Size(min=8, max = 30)
     @Column(name = "title", nullable = false)
     private String title;
 
+    @NotNull
+    @Size(min=8, max = 300)
     @Column(name = "body", nullable = false)
     private String body;
 

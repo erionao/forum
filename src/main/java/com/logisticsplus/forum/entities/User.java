@@ -1,25 +1,39 @@
 package com.logisticsplus.forum.entities;
 
 import com.logisticsplus.forum.entities.enums.UserRole;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 
 @Entity
-public class User {
+    public class User {
 
+    @NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @NotNull
+    @Size(min = 3, max = 21)
     @Column(name = "name", nullable = false)
     private String name;
 
+    @NotEmpty
+    @NotNull
+    @Email
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
+    @NotNull
+    @Size(min = 5, max = 15)
     @Column(name = "password", nullable = false)
     private String password;
 
+    @NotNull
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     private UserRole role;
