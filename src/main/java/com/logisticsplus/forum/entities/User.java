@@ -12,11 +12,11 @@ import javax.validation.constraints.Size;
 @Entity
     public class User {
 
-    @NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @NotEmpty
     @NotNull
     @Size(min = 3, max = 21)
     @Column(name = "name", nullable = false)
@@ -28,11 +28,13 @@ import javax.validation.constraints.Size;
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
+    @NotEmpty
     @NotNull
     @Size(min = 5, max = 15)
     @Column(name = "password", nullable = false)
     private String password;
 
+    @NotEmpty
     @NotNull
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)

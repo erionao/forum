@@ -11,7 +11,6 @@ import java.util.Date;
 @Entity
 public class Post {
 
-    @NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -29,16 +28,17 @@ public class Post {
     @Column(name="timestamp", nullable = false)
     private Date timestamp;
 
-    @NotNull
     @ManyToOne
     @JoinColumn(name = "parent", nullable = false)
     private Post parent;
 
+    @NotEmpty
     @NotNull
     @Size(min=8, max = 30)
     @Column(name = "title", nullable = false)
     private String title;
 
+    @NotEmpty
     @NotNull
     @Size(min=8, max = 300)
     @Column(name = "body", nullable = false)
