@@ -5,6 +5,7 @@ import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -18,6 +19,7 @@ public class Category {
     @NotEmpty
     @NotNull
     @Size(min = 3, max = 21)
+    @Valid
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
