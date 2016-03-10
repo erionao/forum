@@ -11,17 +11,15 @@ import java.util.Date;
 public class Post {
 
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @ManyToOne
     @NotNull
+    @ManyToOne
     @JoinColumn(name = "category", nullable = false)
     private Category category;
 
     @ManyToOne
-    @NotNull
     @JoinColumn(name = "author")
     private User author;
 
@@ -34,11 +32,13 @@ public class Post {
     private Post parent;
 
     @NotEmpty
+    @NotNull
     @Size(min = 5,max = 35)
     @Column(name = "title", nullable = false)
     private String title;
 
     @NotEmpty
+    @NotNull
     @Size(min = 7,max = 35)
     @Column(name = "body", nullable = false)
     private String body;

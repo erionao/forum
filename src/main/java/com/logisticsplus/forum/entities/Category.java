@@ -12,11 +12,11 @@ import javax.validation.constraints.Size;
 
 public class Category {
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     private  int id;
 
     @NotEmpty
+    @NotNull
     @Size(min = 5,max = 15)
     @Column(name = "name",nullable = false)
     private String name;

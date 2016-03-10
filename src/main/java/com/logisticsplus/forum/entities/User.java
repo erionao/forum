@@ -8,17 +8,17 @@ import javax.persistence.*;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.List;
+
 
 @Entity
 public class User {
 
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @NotEmpty
+    @NotNull
     @Size(min = 5,max = 15)
     @Column(name = "name", nullable = false)
     private String name;
@@ -29,10 +29,13 @@ public class User {
     private String email;
 
     @NotEmpty
+    @NotNull
     @Size(min = 7,max = 17)
     @Column(name = "password", nullable = false)
     private String password;
 
+    @NotEmpty
+    @NotNull
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     private UserRole role;
