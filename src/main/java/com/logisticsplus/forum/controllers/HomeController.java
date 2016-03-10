@@ -10,7 +10,10 @@ public class HomeController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model) {
-        model.addAttribute("name", "John Doe");
+        model.addAttribute("name", "Eriona Osmani");
+        model.addAttribute("id", "54321");
+        model.addAttribute("email", "eriona.osmanii@hotmail.com");
+        model.addAttribute("password", "12345");
         return "index";
     }
 
