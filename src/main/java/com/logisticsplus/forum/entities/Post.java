@@ -4,7 +4,6 @@ import com.logisticsplus.forum.entities.Category;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -17,7 +16,6 @@ public class Post {
     private Integer id;
 
     @NotNull
-    @Valid
     @ManyToOne
     @JoinColumn(name = "category", nullable = false)
     private Category category;
@@ -37,7 +35,6 @@ public class Post {
     @NotEmpty
     @NotNull
     @Size(min=8, max = 30)
-    @Valid
     @Column(name = "title", nullable = false)
     private String title;
 
@@ -45,7 +42,6 @@ public class Post {
     @NotEmpty
     @NotNull
     @Size(min=8, max = 300)
-    @Valid
     @Column(name = "body", nullable = false)
     private String body;
 

@@ -5,7 +5,6 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -20,27 +19,23 @@ import javax.validation.constraints.Size;
     @NotEmpty
     @NotNull
     @Size(min = 3, max = 21)
-    @Valid
     @Column(name = "name", nullable = false)
     private String name;
 
     @NotEmpty
     @NotNull
     @Email
-    @Valid
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     @NotEmpty
     @NotNull
     @Size(min = 5, max = 15)
-    @Valid
     @Column(name = "password", nullable = false)
     private String password;
 
     @NotEmpty
     @NotNull
-    @Valid
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     private UserRole role;
