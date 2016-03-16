@@ -6,7 +6,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-
 @Entity
     public class User {
 
@@ -33,8 +32,6 @@ import javax.validation.constraints.NotNull;
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     private UserRole role;
-
-
 
     public Integer getId() {
         return id;
