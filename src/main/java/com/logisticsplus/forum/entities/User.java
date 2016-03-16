@@ -3,10 +3,8 @@ package com.logisticsplus.forum.entities;
 import com.logisticsplus.forum.entities.enums.UserRole;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 
 @Entity
@@ -18,27 +16,25 @@ import javax.validation.constraints.Size;
 
     @NotEmpty
     @NotNull
-    @Size(min = 3, max = 21)
     @Column(name = "name", nullable = false)
     private String name;
 
     @NotEmpty
-    @NotNull
     @Email
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     @NotEmpty
     @NotNull
-    @Size(min = 5, max = 15)
     @Column(name = "password", nullable = false)
     private String password;
 
     @NotEmpty
-    @NotNull
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     private UserRole role;
+
+
 
     public Integer getId() {
         return id;
@@ -79,4 +75,6 @@ import javax.validation.constraints.Size;
     public void setRole(UserRole role) {
         this.role = role;
     }
+
+
 }
