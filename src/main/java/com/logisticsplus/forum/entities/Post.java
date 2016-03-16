@@ -5,7 +5,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -34,14 +33,12 @@ public class Post {
 
     @NotEmpty
     @NotNull
-    @Size(min=8, max = 30)
     @Column(name = "title", nullable = false)
     private String title;
 
 
     @NotEmpty
     @NotNull
-    @Size(min=8, max = 300)
     @Column(name = "body", nullable = false)
     private String body;
 
