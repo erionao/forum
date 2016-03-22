@@ -1,9 +1,6 @@
 package com.logisticsplus.forum.entities;
 
-
-import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 

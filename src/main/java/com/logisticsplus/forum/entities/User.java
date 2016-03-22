@@ -24,11 +24,10 @@ import javax.validation.constraints.NotNull;
     private String email;
 
     @NotEmpty
-    @NotNull
     @Column(name = "password", nullable = false)
     private String password;
 
-    @NotEmpty
+    @NotNull
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     private UserRole role;
