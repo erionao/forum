@@ -2,7 +2,7 @@ package com.logisticsplus.forum;
 
 import com.logisticsplus.forum.entities.User;
 import com.logisticsplus.forum.entities.enums.UserRole;
-import com.logisticsplus.forum.repositories.UserRepository;
+import com.logisticsplus.forum.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -17,6 +17,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
 public class ForumApplication {
@@ -26,7 +27,7 @@ public class ForumApplication {
 	}
 
 	@Bean
-	CommandLineRunner init(final UserRepository userRepository) {
+	CommandLineRunner init(final UserService userService) {
 		return new CommandLineRunner() {
 			@Override
 			public void run(String... arg0) throws Exception {
@@ -35,7 +36,7 @@ public class ForumApplication {
 				user.setEmail("john@doe.com");
 				user.setPassword("johny");
 				user.setRole(UserRole.ADMINISTRATOR);
-				userRepository.save(user);
+				userService.save(user);
 			}
 		};
 
@@ -47,7 +48,7 @@ public class ForumApplication {
 class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
 
 	@Autowired
-	UserRepository repository;
+	UserService service;
 
 	@Override
 	public void init(AuthenticationManagerBuilder auth) throws Exception {
@@ -57,9 +58,8 @@ class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
 	@Bean
 	UserDetailsService userDetailsService() {
 		return login -> {
-			User user = repository.findByEmail(login);
+			User user = service.findByEmail(login);
 			if(user != null) {
-				System.out.println("Found user");
 				return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), true, true, true, true,
 						AuthorityUtils.createAuthorityList("USER"));
 			} else {
@@ -74,6 +74,11 @@ class WebSecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
 @Configuration
 class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+	BCryptPasswordEncoder bcryptEncoder = new BCryptPasswordEncoder();
+
+	@Autowired
+	UserDetailsService myDetailsService;
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
@@ -81,6 +86,16 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.fullyAuthenticated().and().
 				httpBasic().and().
 				csrf().disable();
+
+	}
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		// userDetailsService should be changed to your user details service
+		// password encoder being the bean defined in grails-app/conf/spring/resources.groovy
+		auth.userDetailsService(myDetailsService)
+				.passwordEncoder(bcryptEncoder);
+
 	}
 
 }
+
